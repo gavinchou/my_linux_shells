@@ -90,7 +90,7 @@ for eachInclude in ${includes}; do
   ## ctags read file name from stdin
   for eachFileExt in ${files2Scan}; do
     ## surpress the no files warning
-    files=$(ls ${eachInclude}/*.${eachFileExt} 2>nul || echo "")
+    files=$(ls ${eachInclude}/*.${eachFileExt} 2>/dev/null || echo "")
     # echo ${files}
     for eachFile in ${files}; do
       # echo ${eachFile}
@@ -101,10 +101,14 @@ for eachInclude in ${includes}; do
       echo ${eachFile} | \
       ctags -L - \
           -a -o ${tagsFilePath} \
-          --exclude=.git --exclude=.svn \
+          --exclude=.git --exclude=.svn --exclude=tags \
           --langmap=c++:+.inl+.cc+.h+.cxx -h [".h.H.hh.hpp.hxx.h++.inl"] \
-          --c++-kinds=+p --fields=+iaSK --extra=+q \
-          --languages=c++ --language-force=c++
+          --fields=+iS \
+          --languages=c++
+          # --extra=+q \
+          # --c++-kinds=+p \
+          # --sort=yes \
+          # --language-force=c++
     done
   done
 done
@@ -113,10 +117,14 @@ done
 echo `pwd`
 ctags -R \
     -a -o ${tagsFilePath} \
-    --exclude=.git --exclude=.svn \
+    --exclude=.git --exclude=.svn --exclude=tags \
     --langmap=c++:+.inl+.cc+.h+.cxx -h [".h.H.hh.hpp.hxx.h++.inl"] \
-    --c++-kinds=+p --fields=+iaSK --extra=+q \
-    --language-force=c++ --languages=c++
+    --fields=+iS \
+    --languages=c++
+    # --extra=+q \
+    # --c++-kinds=+p \
+    # --sort=yes \
+    # --language-force=c++
 
 echo done
 exit 0
