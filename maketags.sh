@@ -105,9 +105,9 @@ for eachInclude in ${includes}; do
           --langmap=c++:+.inl+.cc+.h+.cxx -h [".h.H.hh.hpp.hxx.h++.inl"] \
           --fields=+iS \
           --languages=c++
-          # --extra=+q \
           # --c++-kinds=+p \
           # --sort=yes \
+          # --extra=+q \
           # --language-force=c++
     done
   done
@@ -121,9 +121,9 @@ ctags -R \
     --langmap=c++:+.inl+.cc+.h+.cxx -h [".h.H.hh.hpp.hxx.h++.inl"] \
     --fields=+iS \
     --languages=c++
-    # --extra=+q \
     # --c++-kinds=+p \
     # --sort=yes \
+    # --extra=+q \
     # --language-force=c++
 
 echo done
